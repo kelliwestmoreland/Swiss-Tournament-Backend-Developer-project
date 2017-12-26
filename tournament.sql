@@ -12,12 +12,12 @@ CREATE DATABASE tournament; -- adds new tournament database
 
 CREATE TABLE players (id SERIAL primary key, 
 					name TEXT);
-); /*id for the match, which will also be a primary key, and the name in text form*/
+; /*id for the match, which will also be a primary key, and the name in text form*/
 
 CREATE TABLE matches (id SERIAL primary key, 
 					winner INTEGER REFERENCES players (id), 
 					loser INTEGER REFERENCES players (id));
-); /*id for players as a primary key, the winner, then loser in integer form and references the players table and id*/
+; /*id for players as a primary key, the winner, then loser in integer form and references the players table and id*/
 
 
 CREATE VIEW standings AS 
