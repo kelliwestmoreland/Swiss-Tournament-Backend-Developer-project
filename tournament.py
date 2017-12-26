@@ -77,9 +77,9 @@ def playerStandings():
     query = "SELECT * FROM standings;" #calls views in sql to create columns for id, name, winners, and total matches played
     db_cursor.execute(query) #will execute query for standings
     standings = db_cursor.fetchall() #returns all the standings to evaluate
-    
-    for row in db_cursor.fetchall(): #python used to evaluate the standings
-        for player in standings in zip(id, player, winner, matches): #zip used to iterate through the list of standings
+    #python used to evaluate the standings
+    for row in db_cursor.fetchall(): 
+        for player in standings in zip(id, player, winner, matches): #zip used to iterate through the list of standings, referenced https://stackoverflow.com/questions/13704860/zip-lists-in-python
             standings.append((row[0], str(row[1]), row[2], row[3])) #returns tuples of id, name, wins, matches
 
     db.close() #closes database
@@ -115,7 +115,7 @@ def swissPairings():
         name2: the second player's name
     """
     standings = playerStandings() #calls playerStandings to return list of players to evaluate for next rounds
-
+    #reviewed len/while loop https://www.khanacademy.org/computing/computer-programming/programming/looping/p/intro-to-while-loops https://nedbatchelder.com/text/iter.html
     i = 0 
     result = []
     #while loop to review entire list of standings, create new pairs, making sure each player exists once in pairings
