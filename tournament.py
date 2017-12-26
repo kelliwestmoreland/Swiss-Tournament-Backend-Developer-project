@@ -94,7 +94,9 @@ def reportMatch(winner, loser):
     """
     db = connect() #connects to database
     db_cursor = db.cursor() #using cursor object to execute the upcoming query
-    db_cursor.execute("INSERT into matches (winner, loser) values(%s, %s);" %(winner, loser)) #executes outcome of single match between two players
+    sql = "INSERT into matches (winner, loser) VALUES (%s, %s)" #executes outcome of single match between two players
+    data = (winner, loser) # added in data, removed string to prevent SQL injection
+    db_cursor.execute(sql, data)
     db.commit() #will save the winner, loser inserted
     db.close() #closes connection to database
 
